@@ -13,7 +13,9 @@ fi
 
 function usage () {
     echo
+    echo "$1 [-p|--package]"
     echo "$1 [-n 3|5] [-w web_dir] [-k <ftok_dir>] [-W]"
+    echo "  -p build \"binary\" version of the package"
     echo "  -h this help"
     echo "  -n number of players - def. $n_players"
     echo "  -w dir where place the web tree - def. \"$web_path\""
