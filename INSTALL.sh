@@ -39,6 +39,13 @@ function get_param () {
 #
 #  MAIN
 #
+if [ "$1" = "-p" -o "$1" = "--package" ]; then
+   cd ..
+   tar zcvf brisk-img.tgz `find brisk-img -name INSTALL.sh -o -name '*.png' -o -name '*.jpg' | grep -v imgsrc`
+   cd -
+   exit 0
+fi
+
 while [ $# -gt 0 ]; do
     # echo aa $1 xx $2 bb
     case $1 in
