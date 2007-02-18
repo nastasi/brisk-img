@@ -71,6 +71,6 @@ echo "    n_players:   $n_players"
 
 
 install -d ${web_path}/img
-install -m 644 `ls img/*.{jpg,png} | grep -v 'img/src_'` ${web_path}/img
+install -m 644 `ls img/*.{jpg,png,gif} | grep -v 'img/src_'` ${web_path}/img
 
 exit 0
