@@ -43,7 +43,7 @@ function get_param () {
 #
 if [ "$1" = "-p" -o "$1" = "--package" ]; then
    cd ..
-   tar zcvf brisk-img.tgz `find brisk-img -name INSTALL.sh -o -name '*.png' -o -name '*.jpg' | grep -v imgsrc`
+   tar zcvf brisk-img.tgz `find brisk-img -name INSTALL.sh -o -name '*.png' -o -name '*.jpg' -o -name '*.gif' | grep -v imgsrc`
    cd -
    exit 0
 fi
