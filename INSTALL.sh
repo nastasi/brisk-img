@@ -7,8 +7,8 @@ ftok_path="/var/lib/brisk"
 web_path="$HOME/brisk"
 web_only=0
 
-if [ -f $HOME/.brisk_install ]; then
-   . $HOME/.brisk_install
+if [ -f $HOME/.brisk06_install ]; then
+   . $HOME/.brisk06_install
 fi
 
 function usage () {
