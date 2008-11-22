@@ -43,7 +43,7 @@ function get_param () {
 #
 if [ "$1" = "-p" -o "$1" = "--package" ]; then
    cd ..
-   tar zcvf brisk-img.tgz `find brisk-img -name INSTALL.sh -o -name '*.png' -o -name '*.jpg' -o -name '*.gif' | grep -v '/src_'`
+   tar zcvf brisk-img.tgz `find brisk-img -name INSTALL.sh -o -name '*.png' -o -name '*.jpg' -o -name '*.gif' -o -name '.htaccess' | grep -v '/src_'`
    cd -
    exit 0
 fi
@@ -73,7 +73,7 @@ echo "    n_players:   $n_players"
 for i in `find -type d -name 'img'`; do
     ii="`echo "$i" | cut -c 3- `"
     install -d ${web_path}/$ii
-    install -m 644 `find $ii -name INSTALL.sh -o -name '*.png' -o -name '*.jpg' -o -name '*.gif' | grep -v '/src_'` ${web_path}/$ii
+    install -m 644 `find $ii -name INSTALL.sh -o -name '*.png' -o -name '*.jpg' -o -name '*.gif' -o -name '.htaccess' | grep -v '/src_'` ${web_path}/$ii
 done
 
 
