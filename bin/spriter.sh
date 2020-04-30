@@ -14,15 +14,18 @@ fou=$3
 w=$(identify -format "%w" ${fold}/00${sfx}.png)
 h=$(identify -format "%h" ${fold}/00${sfx}.png)
 
-convert -size $((w * 8))x$((h * 6)) xc:none ${fou}${sfx}_bg.png
+convert -size $((w * 9))x$((h * 5)) xc:none ${fou}${sfx}_bg.png
 
 argz="${fou}${sfx}_bg.png"
 
-for seed in 0 1 2 3; do
+for seed in 0 1 2 3 4; do
     for card in $(seq 0 9); do
         x=$(((seed * 2 + card / 5) * w)) 
         y=$(((card % 5) * h))
         argz="$argz $(printf "%s/%02d%s.png" "$fold" "$((seed * 10 + card))" "$sfx") -geometry +${x}+${y} -composite "
+        if [ $seed -eq 4 ]; then
+            break
+        fi
     done
 done
 
