@@ -20,8 +20,8 @@ convert -size $((w * 9))x$((h * 5)) xc:none ${fou}${sfx}_bg.png
 convert -size $((h * 9))x$((w * 5)) xc:none ${fou}${sfx}_oriz_bg.png
 
 convert -size ${w}x${h} xc:none ${fou}${sfx}_empty.png
-convert -size ${h}x${w} xc:none ${fou}${sfx}_empty_eawe.png
-
+convert -size ${h}x${w} xc:none ${fou}${sfx}_empty_ea.png
+cp ${fou}${sfx}_empty_ea.png ${fou}${sfx}_empty_we.png
 cssname="${fou}${sfx}.css"
 rm -f $cssname
 touch $cssname
@@ -44,6 +44,9 @@ for direction in "" "_ea" "_we"; do
             fi
 
             card_id=$(printf "%02d" "$((seed * 10 + card))")
+            if [ "$card_id" = "40" ]; then
+                card_id="cover"
+            fi
             cat <<EOF >> $cssname
 img[data-card-id="${card_id}${direction}"] {
     background: url('img/cards_xx${direction}.png') -${x}px -${y}px;
