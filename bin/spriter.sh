@@ -47,9 +47,10 @@ for direction in "" "_ea" "_we"; do
             if [ "$card_id" = "40" ]; then
                 card_id="cover"
             fi
+            card_url=$(echo "$fou" | sed 's@.*/\([^/]\+/[^/]\+$\)@\1@g')
             cat <<EOF >> $cssname
 img[data-card-id="${card_id}${direction}"] {
-    background: url('img/cards_xx${direction}.png') -${x}px -${y}px;
+    background: url('${card_url}${direction}.png') -${x}px -${y}px;
 }
 
 EOF
