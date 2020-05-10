@@ -23,9 +23,9 @@ h=$(identify -format "%h" ${fold_in}/00.png)
 convert -size $((w * 9))x$((h * 5)) xc:none ${fold_in}/${deck}_bg.png
 convert -size $((h * 9))x$((w * 5)) xc:none ${fold_in}/${deck}_oriz_bg.png
 
-convert -size ${w}x${h} xc:none ${fold_ou}/${deck}_empty.png
-convert -size ${h}x${w} xc:none ${fold_ou}/${deck}_empty_ea.png
-cp ${fold_ou}/${deck}_empty_ea.png ${fold_ou}/${deck}_empty_we.png
+convert -size ${w}x${h} xc:none ${fold_ou}/cards_${deck}_empty.png
+convert -size ${h}x${w} xc:none ${fold_ou}/cards_${deck}_empty_ea.png
+cp ${fold_ou}/cards_${deck}_empty_ea.png ${fold_ou}/cards_${deck}_empty_we.png
 cssname="${fold_ou}/cards_${deck}.css"
 rm -f $cssname
 touch $cssname
@@ -51,7 +51,7 @@ for direction in "" "_ea" "_we"; do
             if [ "$card_id" = "40" ]; then
                 card_id="cover"
             fi
-            card_url=$(echo "$fold_ou" | sed 's@.*/\([^/]\+/[^/]\+$\)@\1@g')
+            card_url="img/cards_${deck}"
             cat <<EOF >> $cssname
 img[data-card-id="${card_id}${direction}"] {
     background: url('${card_url}${direction}.png') -${x}px -${y}px;
@@ -86,9 +86,10 @@ EOF
         done
     done
     # full color: argz="$argz ${fold_ou}${deck}.png"
-    argz="$argz +dither -colors 255 ${fold_ou}/${deck}${direction}.png"
+    full_out="${fold_ou}/cards_${deck}${direction}.png"
+    argz="$argz +dither -colors 255 $full_out"
     convert $argz
-    echo "Created ${fold_ou}/${deck}${direction}.png"
+    echo "Created $full_out"
 done
 
 # rm  ${fold}/[0-3][0-9]${deck}*.png ${fold_ou}${deck}_bg.png ${fold_ou}${deck}_oriz_bg.png
